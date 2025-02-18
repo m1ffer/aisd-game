@@ -499,6 +499,84 @@ void drawwind() {
 
 }
 
+void windstairs() {
+    ClearScreen();
+    drawwind();
+    vector <draw> v(4);
+    v[0].begining.X = 30;
+    v[0].begining.Y = 44;
+    v[0].color = 15;
+    v[0].ending.X = 30;
+    v[0].ending.Y = 50;
+    v[0].letter = "│";
+    v[0].ox = 0;
+    v[0].oy = 1;
+    //
+    v[1].begining.X = 31;
+    v[1].begining.Y = 51;
+    v[1].color = 15;
+    v[1].ending.X = 42;
+    v[1].ending.Y = 51;
+    v[1].letter = "¯";
+    v[1].ox = 1;
+    v[1].oy = 0;
+    //
+    v[2].begining.X = 43;
+    v[2].begining.Y = 50;
+    v[2].color = 15;
+    v[2].ending.X = 43;
+    v[2].ending.Y = 44;
+    v[2].letter = "│";
+    v[2].ox = 0;
+    v[2].oy = -1;
+    //
+    v[3].begining.X = 42;
+    v[3].begining.Y = 43;
+    v[3].color = 15;
+    v[3].ending.X = 31;
+    v[3].ending.Y = 43;
+    v[3].letter = "_";
+    v[3].ox = -1;
+    v[3].oy = 0;
+    //bvhvftdc
+    v[4].begining.X = 30;
+    v[4].begining.Y = 44;
+    v[4].color = 15;
+    v[4].ending.X = 30;
+    v[4].ending.Y = 50;
+    v[4].letter = "│";
+    v[4].ox = 0;
+    v[4].oy = 1;
+    //
+    v[5].begining.X = 31;
+    v[5].begining.Y = 51;
+    v[5].color = 15;
+    v[5].ending.X = 42;
+    v[5].ending.Y = 51;
+    v[5].letter = "¯";
+    v[5].ox = 1;
+    v[5].oy = 0;
+    //
+    v[6].begining.X = 43;
+    v[6].begining.Y = 50;
+    v[6].color = 15;
+    v[6].ending.X = 43;
+    v[6].ending.Y = 44;
+    v[6].letter = "│";
+    v[6].ox = 0;
+    v[6].oy = -1;
+    //
+    v[7].begining.X = 42;
+    v[7].begining.Y = 43;
+    v[7].color = 15;
+    v[7].ending.X = 31;
+    v[7].ending.Y = 43;
+    v[7].letter = "_";
+    v[7].ox = -1;
+    v[7].oy = 0;
+    drawer(v, 7, 0, "");
+}
+
 void intwithroom1() {
     SetConsoleTextAttribute(h, 15);
     ClearScreen();
@@ -645,12 +723,14 @@ int main()
     cfi.FontWeight = FW_MEDIUM;
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &cfi);
     int cur_floor;
-    while (1) {
+    /*while (1) {
         walking_stairs(1);
         walking_stairs(-1);
-    }
-    intwithroom1();
-    Sleep(30000);
+    }*/
+    windstairs();
+    Sleep(3000);
+    //intwithroom1();
+    //Sleep(30000);
     DrawFloor3(cur_floor);
     gotoxy(30, 20);
     cout << 'b';
@@ -777,7 +857,7 @@ int main()
             case(FROM_LEFT_1ST_BUTTON_PRESSED):
                 coord.X = InputRecord.Event.MouseEvent.dwMousePosition.X;
                 coord.Y = InputRecord.Event.MouseEvent.dwMousePosition.Y;
-                gotoxy(1, 1);
+                gotoxy(1, 4);
                 cout << "                                 ";
                 cout << coord.X << ' ' << coord.Y;
                 if (which_clr == "stairs" && objects[make_pair(coord.X, coord.Y)] == "stairs") { intwithstairs(); }
