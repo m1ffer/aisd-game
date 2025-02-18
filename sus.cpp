@@ -461,37 +461,37 @@ void intwithstairs() {
 void drawwind() {
     vector <draw> v(4);
     v[0].begining.X = 20;
-    v[0].begining.Y = 20;
+    v[0].begining.Y = 15;
     v[0].color = 15;
     v[0].ending.X = 20;
-    v[0].ending.Y = 40;
+    v[0].ending.Y = 56;
     v[0].letter = "│";
     v[0].ox = 0;
     v[0].oy = 1;
     //
     v[1].begining.X = 21;
-    v[1].begining.Y = 41;
+    v[1].begining.Y = 57;
     v[1].color = 15;
-    v[1].ending.X = 49;
-    v[1].ending.Y = 41;
+    v[1].ending.X = 88;
+    v[1].ending.Y = 57;
     v[1].letter = "¯";
     v[1].ox = 1;
     v[1].oy = 0;
     //
-    v[2].begining.X = 50;
-    v[2].begining.Y = 40;
+    v[2].begining.X = 89;
+    v[2].begining.Y = 56;
     v[2].color = 15;
-    v[2].ending.X = 50;
-    v[2].ending.Y = 20;
+    v[2].ending.X = 89;
+    v[2].ending.Y = 15;
     v[2].letter = "│";
     v[2].ox = 0;
     v[2].oy = -1;
     //
-    v[3].begining.X = 49;
-    v[3].begining.Y = 19;
+    v[3].begining.X = 88;
+    v[3].begining.Y = 14;
     v[3].color = 15;
     v[3].ending.X = 21;
-    v[3].ending.Y = 19;
+    v[3].ending.Y = 14;
     v[3].letter = "_";
     v[3].ox = -1;
     v[3].oy = 0;
