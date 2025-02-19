@@ -154,6 +154,64 @@ void drawer(vector <draw>& v, int n_floor, bool f, string s) {
     }
 }
 
+void walking_stairs(int f) {
+    vector <draw> v(4);
+    v[0].begining.X = 31;
+    v[0].begining.Y = 46;
+    v[0].ending.X = 63;
+    v[0].ending.Y = 30;
+    v[0].letter = "|";
+    v[0].color = 15;
+    v[0].ox = 2;
+    v[0].oy = -1;
+    //
+    v[1].begining.X = 32;
+    v[1].begining.Y = 46;
+    v[1].ending.X = 64;
+    v[1].ending.Y = 30;
+    v[1].letter = "¯";
+    v[1].color = 15;
+    v[1].ox = 2;
+    v[1].oy = -1;
+    //
+    v[2].begining.X = 26;
+    v[2].begining.Y = 47;
+    v[2].ending.X = 30;
+    v[2].ending.Y = 47;
+    v[2].letter = "¯";
+    v[2].color = 15;
+    v[2].ox = 1;
+    v[2].oy = 0;
+    //
+    v[3].begining.X = 65;
+    v[3].begining.Y = 30;
+    v[3].ending.X = 68;
+    v[3].ending.Y = 30;
+    v[3].letter = "¯";
+    v[3].color = 15;
+    v[3].ox = 1;
+    v[3].oy = 0;
+    drawer(v, 7, 0, "");
+    COORD c_begin, c_end;
+    c_begin.X = f == 1 ? 30 : 64;
+    c_begin.Y = f == 1 ? 46 : 29;
+    c_end.X = f == -1 ? 30 : 64;
+    c_end.Y = f == -1 ? 46 : 29;
+    SetConsoleTextAttribute(h, 11);
+    gotoxy(c_begin.X, c_begin.Y);
+    cout << 'a';
+    gotoxy(c_begin.X, c_begin.Y);
+    Sleep(200);
+    while (c_begin.X != c_end.X) {
+        cout << ' ';
+        c_begin.X += f * 2;
+        c_begin.Y += (-1) * f;
+        gotoxy(c_begin.X, c_begin.Y);
+        cout << 'a';
+        gotoxy(c_begin.X, c_begin.Y);
+        Sleep(200);
+    }
+}
 
 void draw_el(bool f) {
     vector <draw> v(2);
@@ -229,6 +287,46 @@ void draw_room2(bool f) {
     SetConsoleTextAttribute(h, 11);
 }
 
+void drawwind() {
+    vector <draw> v(4);
+    v[0].begining.X = 20;
+    v[0].begining.Y = 15;
+    v[0].color = 15;
+    v[0].ending.X = 20;
+    v[0].ending.Y = 56;
+    v[0].letter = "│";
+    v[0].ox = 0;
+    v[0].oy = 1;
+    //
+    v[1].begining.X = 21;
+    v[1].begining.Y = 57;
+    v[1].color = 15;
+    v[1].ending.X = 88;
+    v[1].ending.Y = 57;
+    v[1].letter = "¯";
+    v[1].ox = 1;
+    v[1].oy = 0;
+    //
+    v[2].begining.X = 89;
+    v[2].begining.Y = 56;
+    v[2].color = 15;
+    v[2].ending.X = 89;
+    v[2].ending.Y = 15;
+    v[2].letter = "│";
+    v[2].ox = 0;
+    v[2].oy = -1;
+    //
+    v[3].begining.X = 88;
+    v[3].begining.Y = 14;
+    v[3].color = 15;
+    v[3].ending.X = 21;
+    v[3].ending.Y = 14;
+    v[3].letter = "_";
+    v[3].ox = -1;
+    v[3].oy = 0;
+    drawer(v, 7, 0, "");
+
+}
 
 void draw_stairs(bool f) {
     vector <draw> v(3);
@@ -454,57 +552,16 @@ void DrawFloor3(int& cur_floor) {
 }
 
 void intwithstairs() {
-    gotoxy(1, 3);
-    cout << "Лестница";
-}
-
-void drawwind() {
-    vector <draw> v(4);
-    v[0].begining.X = 20;
-    v[0].begining.Y = 15;
-    v[0].color = 15;
-    v[0].ending.X = 20;
-    v[0].ending.Y = 56;
-    v[0].letter = "│";
-    v[0].ox = 0;
-    v[0].oy = 1;
-    //
-    v[1].begining.X = 21;
-    v[1].begining.Y = 57;
-    v[1].color = 15;
-    v[1].ending.X = 88;
-    v[1].ending.Y = 57;
-    v[1].letter = "¯";
-    v[1].ox = 1;
-    v[1].oy = 0;
-    //
-    v[2].begining.X = 89;
-    v[2].begining.Y = 56;
-    v[2].color = 15;
-    v[2].ending.X = 89;
-    v[2].ending.Y = 15;
-    v[2].letter = "│";
-    v[2].ox = 0;
-    v[2].oy = -1;
-    //
-    v[3].begining.X = 88;
-    v[3].begining.Y = 14;
-    v[3].color = 15;
-    v[3].ending.X = 21;
-    v[3].ending.Y = 14;
-    v[3].letter = "_";
-    v[3].ox = -1;
-    v[3].oy = 0;
-    drawer(v, 7, 0, "");
-
-}
-
-void intwithroom1() {
     SetConsoleTextAttribute(h, 15);
     ClearScreen();
     drawwind();
     gotoxy(21, 22);
     cout << "Привет";
+    drawwind();
+}
+
+void intwithroom1() {
+    
 }
 void intwithroom2() {
     gotoxy(1, 3);
@@ -516,64 +573,7 @@ void intwithel() {
 }
 
 
-void walking_stairs(int f) {
-    vector <draw> v(4);
-    v[0].begining.X = 31;
-    v[0].begining.Y = 46;
-    v[0].ending.X = 63;
-    v[0].ending.Y = 30;
-    v[0].letter = "|";
-    v[0].color = 15;
-    v[0].ox = 2;
-    v[0].oy = -1;
-    //
-    v[1].begining.X = 32;
-    v[1].begining.Y = 46;
-    v[1].ending.X = 64;
-    v[1].ending.Y = 30;
-    v[1].letter = "¯";
-    v[1].color = 15;
-    v[1].ox = 2;
-    v[1].oy = -1;
-    //
-    v[2].begining.X = 26;
-    v[2].begining.Y = 47;
-    v[2].ending.X = 30;
-    v[2].ending.Y = 47;
-    v[2].letter = "¯";
-    v[2].color = 15;
-    v[2].ox = 1;
-    v[2].oy = 0;
-    //
-    v[3].begining.X = 65;
-    v[3].begining.Y = 30;
-    v[3].ending.X = 68;
-    v[3].ending.Y = 30;
-    v[3].letter = "¯";
-    v[3].color = 15;
-    v[3].ox = 1;
-    v[3].oy = 0;
-    drawer(v, 7, 0, "");
-    COORD c_begin, c_end;
-    c_begin.X = f == 1 ? 30 : 64;
-    c_begin.Y = f == 1 ? 46 : 29;
-    c_end.X = f == -1 ? 30 : 64;
-    c_end.Y = f == -1 ? 46 : 29;
-    SetConsoleTextAttribute(h, 11);
-    gotoxy(c_begin.X, c_begin.Y);
-    cout << 'a';
-    gotoxy(c_begin.X, c_begin.Y);
-    Sleep(200);
-    while (c_begin.X != c_end.X) {
-        cout << ' ';
-        c_begin.X += f * 2;
-        c_begin.Y += (-1) * f;
-        gotoxy(c_begin.X, c_begin.Y);
-        cout << 'a';
-        gotoxy(c_begin.X, c_begin.Y);
-        Sleep(200);
-    }
-}
+
 
 
 int main()
@@ -645,12 +645,6 @@ int main()
     cfi.FontWeight = FW_MEDIUM;
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), TRUE, &cfi);
     int cur_floor;
-    while (1) {
-        walking_stairs(1);
-        walking_stairs(-1);
-    }
-    intwithroom1();
-    Sleep(30000);
     DrawFloor3(cur_floor);
     gotoxy(30, 20);
     cout << 'b';
@@ -679,8 +673,6 @@ int main()
     //COORD coord; // для координат X, Y
     bool f = 0;
     bool f2 = 0;
-
-
     while (1) {
         ReadConsoleInput(hin, &InputRecord, 1, &Events); // считывание
         switch (InputRecord.EventType) {
